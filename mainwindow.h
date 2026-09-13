@@ -22,5 +22,10 @@ public:
 private:
     Canvas *canvas;
     Ui::MainWindow *ui;
+
+private slots:
+    void onLineModeSelected();
+    void onRectangleModeSelected();
+    void onCircleModeSelected();
 };
 #endif // MAINWINDOW_H

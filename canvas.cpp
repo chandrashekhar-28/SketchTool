@@ -1,5 +1,7 @@
 #include "canvas.h"
 #include "lineshape.h"
+#include "rectangleshape.h"
+#include "circleshape.h"
 #include <QPainter>
 #include <QtGlobal>
 
@@ -7,6 +9,11 @@ Canvas::Canvas(QWidget *parent)
     : QWidget{parent}
 {
     setMinimumSize (600, 400);
+}
+
+void Canvas::setDrawMode(DrawMode mode)
+{
+    currentMode = mode;
 }
 
 void Canvas::paintEvent(QPaintEvent *event)
@@ -49,7 +56,26 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
     if (isDrawing)
     {
         currentPoint = event->pos();
-        shapes.append(new LineShape(startPoint, currentPoint));
+
+        Shape *newShape = nullptr;
+        switch (currentMode)
+        {
+        case DrawMode::Line:
+            newShape = new LineShape(startPoint, currentPoint);
+            break;
+        case DrawMode::Rectangle:
+            newShape = new RectangleShape(startPoint, currentPoint);
+            break;
+            case DrawMode::Circle:
+            newShape = new CircleShape(startPoint, currentPoint);
+            break;
+        }
+
+        if (newShape)
+            {
+                shapes.append(newShape);
+            }
+
         isDrawing = false;
         update();
     }

@@ -1,17 +1,25 @@
+#ifndef CANVAS_H
+#define CANVAS_H
+
 #include "shape.h"
 #include <QVector>
 #include <QPoint>
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QWidget>
-#ifndef CANVAS_H
-#define CANVAS_H
+
+enum class DrawMode
+{
+    Line, Rectangle, Circle
+};
 
 class Canvas : public QWidget
 {
     Q_OBJECT
 public:
     explicit Canvas(QWidget *parent = nullptr);
+
+    void setDrawMode(DrawMode Mode);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -24,6 +32,7 @@ private:
     QPoint startPoint;
     QPoint currentPoint;
     bool isDrawing = false;
+    DrawMode currentMode = DrawMode::Line;
 
 signals:
 };

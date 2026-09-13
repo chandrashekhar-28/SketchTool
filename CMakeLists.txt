@@ -14,6 +14,8 @@ qt_add_executable(SketchTool
     canvas.h canvas.cpp
     shape.h shape.cpp
     lineshape.h lineshape.cpp
+    rectangleshape.h rectangleshape.cpp
+    circleshape.h circleshape.cpp
 )
 
 target_link_libraries(SketchTool

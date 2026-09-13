@@ -2,10 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "canvas.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 QT_END_NAMESPACE
 
@@ -18,6 +20,7 @@ public:
     ~MainWindow() override;
 
 private:
+    Canvas *canvas;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

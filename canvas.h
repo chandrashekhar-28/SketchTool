@@ -1,12 +1,11 @@
+#include "shape.h"
 #include <QVector>
-#include <QLine>
 #include <QPoint>
 #include <QMouseEvent>
 #include <QPaintEvent>
+#include <QWidget>
 #ifndef CANVAS_H
 #define CANVAS_H
-
-#include <QWidget>
 
 class Canvas : public QWidget
 {
@@ -21,7 +20,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-    QVector<QLine> lines;
+    QVector<Shape*> shapes;
     QPoint startPoint;
     QPoint currentPoint;
     bool isDrawing = false;

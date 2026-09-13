@@ -1,4 +1,5 @@
 #include "canvas.h"
+#include "lineshape.h"
 #include <QPainter>
 #include <QtGlobal>
 
@@ -16,9 +17,9 @@ void Canvas::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(QPen(Qt::white, 3));
 
-    for (const QLine &line :  std::as_const(lines))
+    for (Shape* shape : std::as_const(shapes))
     {
-        painter.drawLine(line);
+        shape->draw(painter);
     }
 
     if (isDrawing)
@@ -48,7 +49,7 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event)
     if (isDrawing)
     {
         currentPoint = event->pos();
-        lines.append(QLine(startPoint, currentPoint));
+        shapes.append(new LineShape(startPoint, currentPoint));
         isDrawing = false;
         update();
     }

@@ -12,6 +12,8 @@ qt_add_executable(SketchTool
     mainwindow.h
     mainwindow.ui
     canvas.h canvas.cpp
+    shape.h shape.cpp
+    lineshape.h lineshape.cpp
 )
 
 target_link_libraries(SketchTool

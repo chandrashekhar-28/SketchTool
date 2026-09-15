@@ -1,7 +1,7 @@
 #include "lineshape.h"
 
 LineShape::LineShape(const QPoint &start, const QPoint &end)
-    : Shape(start,end)
+    : Shape(ShapeType::Line, start,end)
 {
 }
 

@@ -1,7 +1,7 @@
 #include "circleshape.h"
 
 CircleShape::CircleShape(const QPoint &start, const QPoint &end)
-    : Shape(start, end)
+    : Shape(ShapeType::Circle, start, end)
 {
 }
 

@@ -1,7 +1,7 @@
 #include "rectangleshape.h"
 
 RectangleShape::RectangleShape(const QPoint &start, const QPoint &end)
-    :Shape(start, end)
+    :Shape(ShapeType::Rectangle, start, end)
 {
 }
 

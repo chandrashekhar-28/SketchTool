@@ -2,11 +2,12 @@
 #define CANVAS_H
 
 #include "shape.h"
-#include <QVector>
+#include <vector>
 #include <QPoint>
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QWidget>
+#include <memory>
 
 enum class DrawMode
 {
@@ -19,7 +20,11 @@ class Canvas : public QWidget
 public:
     explicit Canvas(QWidget *parent = nullptr);
 
-    void setDrawMode(DrawMode Mode);
+    void setDrawMode(DrawMode mode);
+    void undo();
+    void clear();
+    bool saveToFile(const QString &filePath);
+    bool loadFromFile(const QString &filePath);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -28,7 +33,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-    QVector<Shape*> shapes;
+    std::vector<std::unique_ptr<Shape>> shapes;
     QPoint startPoint;
     QPoint currentPoint;
     bool isDrawing = false;
